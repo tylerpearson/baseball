@@ -326,6 +326,7 @@ h4, h5, h6 {
 .section {
   position: relative;
   padding: var(--section-padding) 0;
+  overflow: hidden;
 }
 
 .section--alt {
@@ -1096,7 +1097,7 @@ h4, h5, h6 {
   margin-top: 48px;
 }
 
-.strike-zone-panel { text-align: center; flex: 1; min-width: 180px; max-width: 220px; }
+.strike-zone-panel { text-align: center; flex: 0 1 200px; }
 
 .strike-zone-panel h4 {
   font-family: 'Inter', sans-serif;
