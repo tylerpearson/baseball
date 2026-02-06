@@ -21,6 +21,10 @@ Static single-page site. No frameworks, no build step.
 - `styles.css` -- dark theme using CSS custom properties
 - `scripts.js` -- interactivity (tooltips, pitch comparisons, animated SVG trajectories, strike zone heat maps)
 
+## Deploy
+
+Hosted on Cloudflare Workers. Deploys automatically on push to `main`.
+
 ## Run locally
 
 Open `index.html` in a browser.
