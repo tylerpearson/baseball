@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<rect x="72" y="112" width="26" height="3" rx="1" fill="#94a3b8" opacity="0.4"/>' +
         '<path d="M85,22 Q92,38 80,52 Q73,65 88,78 Q98,88 82,100 Q78,108 80,115" fill="none" stroke="' + color + '" stroke-width="2" stroke-linecap="round"/>' +
         '<polygon points="80,115 83,108 77,110" fill="' + color + '"/>' +
-        '<text x="105" y="70" fill="' + color + '" font-family="Inter,sans-serif" font-size="8" font-weight="600">???</text>' +
+        '<text x="105" y="70" fill="' + color + '" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600">???</text>' +
         '</svg>';
     }
 
