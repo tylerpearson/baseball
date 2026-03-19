@@ -694,7 +694,7 @@ h4, h5, h6 {
   padding: 18px 20px;
   background: rgba(10, 22, 40, 0.6);
   border-radius: 10px;
-  border-left: 3px solid var(--clay);
+  border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .strategy-example .example-label {
@@ -1025,7 +1025,7 @@ h4, h5, h6 {
   font-size: 0.85rem;
   color: var(--muted);
   font-style: italic;
-  border-left: 3px solid var(--clay);
+  border: 1px solid rgba(148, 163, 184, 0.1);
   line-height: 1.7;
 }
 
