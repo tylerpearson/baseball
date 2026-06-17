@@ -658,20 +658,21 @@ h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  background: transparent;
+  gap: 8px;
+  background: var(--clay-dim, rgba(196, 121, 58, 0.06));
   border: none;
-  border-top: 1px solid var(--card-border);
-  color: var(--muted);
+  border-top: 1px solid rgba(196, 121, 58, 0.18);
+  color: var(--clay-bright, #d9944f);
   font-family: 'Geist', system-ui, sans-serif;
   font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: color var(--transition), background var(--transition);
 }
 
-.card-toggle:hover { color: var(--white); background: rgba(255, 255, 255, 0.025); }
+.card-toggle:hover { color: #fff; background: rgba(196, 121, 58, 0.16); }
 .card-toggle .arrow { transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); font-size: 0.7em; }
 .pitch-card.expanded .card-toggle .arrow { transform: rotate(180deg); }
 
