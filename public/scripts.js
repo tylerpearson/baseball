@@ -672,12 +672,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var termKeys = Object.keys(GLOSSARY_TERMS);
 
+    function matchesGlossaryTerm(text, term) {
+      // Whole-word match so "save" does not match "saves", "era" not "several".
+      var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return new RegExp('\\b' + escaped + '\\b').test(text);
+    }
+
     contentAreas.forEach(function (el) {
       var strongs = el.querySelectorAll('strong, em');
       strongs.forEach(function (tag) {
         var text = tag.textContent.toLowerCase().trim();
         for (var i = 0; i < termKeys.length; i++) {
-          if (text === termKeys[i] || text.indexOf(termKeys[i]) !== -1) {
+          if (matchesGlossaryTerm(text, termKeys[i])) {
             // Skip if already wrapped
             if (tag.parentElement && tag.parentElement.classList.contains('glossary-tooltip-trigger')) return;
 
