@@ -347,24 +347,13 @@ h4, h5, h6 {
   letter-spacing: -0.02em;
   margin-bottom: 20px;
   color: var(--heading);
-  background: linear-gradient(
-    105deg,
-    var(--heading) 0%,
-    var(--heading) 40%,
-    var(--cream) 50%,
-    var(--heading) 60%,
-    var(--heading) 100%
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 6s ease-in-out infinite;
+  text-wrap: balance;
 }
 
-@keyframes shimmer {
-  0%, 100% { background-position: 100% 50%; }
-  50% { background-position: 0% 50%; }
+/* The "Story" gets the warm accent — a single deliberate emphasis, not gradient text */
+.hero h1 em {
+  font-style: italic;
+  color: var(--clay-bright, #d9944f);
 }
 
 .hero p {
@@ -446,68 +435,74 @@ h4, h5, h6 {
 }
 
 .section-header {
-  text-align: center;
-  margin-bottom: 64px;
+  max-width: 680px;
+  margin-bottom: 56px;
 }
 
+/* Short clay rule sits above the headline as the brand signal — replaces the per-section eyebrow */
 .section-header h2 {
-  font-size: clamp(1.8rem, 4vw, 2.75rem);
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 4vw, 2.85rem);
+  margin-bottom: 16px;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  padding-top: 22px;
+  position: relative;
+}
+
+.section-header h2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--clay);
+  border-radius: 2px;
 }
 
 .section-header p {
-  color: var(--muted);
-  max-width: 580px;
-  margin: 0 auto;
-  font-size: 1.02rem;
-  line-height: 1.8;
+  color: var(--text);
+  max-width: 60ch;
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 
-.section-label {
-  display: inline-block;
-  font-family: 'Geist', system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--clay);
-  margin-bottom: 10px;
-}
-
-/* ---------- Basics / Intro ---------- */
+/* ---------- Basics / Intro ----------
+   Editorial entries, not cards: two columns separated by hairlines,
+   icon sits inline with the heading. No box chrome. */
 .basics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  column-gap: 56px;
+  row-gap: 0;
 }
 
 .basics-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  transition: border-color var(--transition), transform var(--transition);
+  padding: 32px 0;
+  border-top: 1px solid var(--card-border);
 }
 
-.basics-card:hover {
-  border-color: rgba(196, 121, 58, 0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(196, 121, 58, 0.06);
+.basics-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.basics-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
-.basics-card p { color: var(--muted); font-size: 0.93rem; line-height: 1.75; }
+.basics-card p { color: var(--text); font-size: 0.98rem; line-height: 1.78; }
 
 .basics-card .icon {
-  width: 48px;
-  height: 48px;
+  flex: none;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius);
-  margin-bottom: 20px;
+  border-radius: 9px;
 }
+
+.basics-card .icon svg { width: 18px; height: 18px; }
 
 .icon--red   { background: var(--red-glow); color: var(--red); }
 .icon--blue  { background: rgba(0, 45, 114, 0.15); color: #60a5fa; }
@@ -551,26 +546,36 @@ h4, h5, h6 {
 /* ---------- Pitch Cards ---------- */
 .pitch-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 22px;
-}
-
-.pitch-card {
-  background: var(--card-bg);
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1px;
+  background: var(--card-border);
   border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
-.pitch-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+/* Cells share a continuous surface (1px gaps over the border color) so the
+   arsenal reads as one connected index rather than ten floating tiles. */
+.pitch-card {
+  background: var(--navy-light);
+  position: relative;
+  transition: background var(--transition);
 }
 
-.pitch-card[data-family="fastball"] { border-top: 3px solid var(--fastball-color); }
-.pitch-card[data-family="breaking"] { border-top: 3px solid var(--breaking-color); }
-.pitch-card[data-family="offspeed"] { border-top: 3px solid var(--offspeed-color); }
+.pitch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.pitch-card:hover { background: var(--card-bg); }
+
+.pitch-card[data-family="fastball"]::before { background: var(--fastball-color); }
+.pitch-card[data-family="breaking"]::before { background: var(--breaking-color); }
+.pitch-card[data-family="offspeed"]::before { background: var(--offspeed-color); }
 
 .card-header {
   padding: 28px 28px 0;
@@ -696,75 +701,56 @@ h4, h5, h6 {
   font-weight: 500;
 }
 
-/* ---------- Pitcher Types ---------- */
+/* ---------- Pitcher Types ----------
+   A ruled editorial roster: no boxes, each role separated by a hairline. */
 .pitcher-types-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: 48px;
+  row-gap: 0;
 }
 
 .pitcher-type-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  transition: border-color var(--transition), transform var(--transition);
-  position: relative;
-  overflow: hidden;
+  padding: 30px 0;
+  border-top: 1px solid var(--card-border);
 }
 
-/* Baseball-stitch-inspired left accent on hover */
-.pitcher-type-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 24px;
-  bottom: 24px;
-  width: 3px;
-  background: linear-gradient(to bottom, transparent 0%, var(--clay) 15%, var(--clay) 35%, transparent 40%, transparent 60%, var(--clay) 65%, var(--clay) 85%, transparent 100%);
-  opacity: 0;
-  transition: opacity var(--transition);
-  border-radius: 2px;
-}
+.pitcher-type-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
 
-.pitcher-type-card:hover::before { opacity: 0.5; }
-.pitcher-type-card:hover { border-color: rgba(196, 121, 58, 0.18); transform: translateY(-2px); }
-
-.pitcher-type-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
-
-.pitcher-type-card .role-meta { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.pitcher-type-card .role-meta { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
 
 .role-meta .tag {
   font-size: 0.72rem;
   font-family: 'DM Mono', 'SF Mono', monospace;
-  padding: 4px 12px;
-  border-radius: 6px;
-  background: rgba(0, 45, 114, 0.15);
-  color: #60a5fa;
+  padding: 3px 0;
+  color: var(--breaking-color);
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-.pitcher-type-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.72; }
+.role-meta .tag + .tag::before {
+  content: '·';
+  margin-right: 8px;
+  color: var(--muted);
+}
+
+.pitcher-type-card p { color: var(--text); font-size: 0.95rem; line-height: 1.74; }
 
 /* ---------- Strategy ---------- */
 .strategy-blocks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  column-gap: 56px;
+  row-gap: 0;
 }
 
 .strategy-block {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  transition: border-color var(--transition), transform var(--transition);
+  padding: 32px 0;
+  border-top: 1px solid var(--card-border);
 }
 
-.strategy-block:hover { border-color: rgba(96, 165, 250, 0.15); transform: translateY(-2px); }
-.strategy-block h3 { font-size: 1.2rem; margin-bottom: 12px; }
-.strategy-block p { color: var(--muted); font-size: 0.9rem; margin-bottom: 8px; line-height: 1.72; }
+.strategy-block h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.strategy-block p { color: var(--text); font-size: 0.97rem; margin-bottom: 8px; line-height: 1.76; }
 
 .strategy-example {
   margin-top: 18px;
@@ -1034,47 +1020,35 @@ h4, h5, h6 {
 .compare-stat-item .value { font-family: 'DM Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--heading); }
 
 /* ---------- Legends -- Baseball Card Style ---------- */
+/* Editorial profiles, not trading cards: ruled rows, a short red "stitch"
+   accent above each name as an on-theme detail. */
 .legends-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  column-gap: 56px;
+  row-gap: 0;
 }
 
 .legend-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
-  padding: 0;
-  overflow: hidden;
-  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  padding: 36px 0;
+  border-top: 1px solid var(--card-border);
   position: relative;
 }
 
-.legend-card:hover {
-  border-color: rgba(196, 121, 58, 0.25);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25);
-  transform: translateY(-4px);
-}
-
-/* Stitching-inspired accent bar — animates on hover */
+/* Short red stitching segment above the name */
 .legend-card::before {
   content: '';
   display: block;
-  height: 5px;
-  background: repeating-linear-gradient(90deg, var(--red) 0px, var(--red) 12px, transparent 12px, transparent 18px);
-  background-size: 200% 100%;
-  opacity: 0.4;
-  transition: opacity 0.4s ease, background-position 0.6s ease;
+  width: 44px;
+  height: 3px;
+  margin-bottom: 18px;
+  background: repeating-linear-gradient(90deg, var(--red) 0px, var(--red) 7px, transparent 7px, transparent 11px);
+  opacity: 0.85;
 }
 
-.legend-card:hover::before {
-  opacity: 0.7;
-  background-position: 18px 0;
-}
+.legend-card-inner { padding: 0; }
 
-.legend-card-inner { padding: 28px 32px 32px; }
-
-.legend-card h3 { font-size: 1.35rem; margin-bottom: 2px; }
+.legend-card h3 { font-size: 1.5rem; margin-bottom: 2px; }
 
 .legend-card .legend-pitch {
   font-family: 'Geist', system-ui, sans-serif;
@@ -1086,7 +1060,7 @@ h4, h5, h6 {
   margin-bottom: 14px;
 }
 
-.legend-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; line-height: 1.72; }
+.legend-card p { color: var(--text); font-size: 0.95rem; margin-bottom: 14px; line-height: 1.74; }
 
 .legend-card .legend-stat {
   display: inline-flex;
@@ -1155,6 +1129,32 @@ h4, h5, h6 {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 14px;
 }
+
+.glossary-empty {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px dashed var(--card-border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.glossary-empty .empty-query { color: var(--heading); font-weight: 600; }
+
+.glossary-empty-suggest {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--clay-bright, #d9944f);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.glossary-empty-suggest:hover { color: var(--clay); }
 
 .glossary-item {
   background: var(--card-bg);

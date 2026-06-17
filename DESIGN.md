@@ -59,6 +59,12 @@ typography:
     fontWeight: 500
     lineHeight: 1.3
     letterSpacing: "normal"
+  annotation:
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "10px"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "normal"
 rounded:
   sm: "8px"
   md: "12px"
@@ -128,7 +134,7 @@ A cool dark palette lit by three warm/saturated accents and a consistent three-c
 - **Mound Red** (`#c8102e`): The single hottest accent — the primary call-to-action, the logo mark, selection highlight. Deepens to `Red Deep` (`#a50d24`) on press. Used sparingly; its rarity is its power.
 
 ### Secondary
-- **Dusk Clay** (`#c4793a`): The warm editorial accent — links, section labels, focus rings, decorative diamond strokes. Brightens to `Clay Bright` (`#d9944f`) on link hover. This is the color of stadium light.
+- **Dusk Clay** (`#c4793a`): The warm editorial accent — links, the short rule above each section heading, focus rings, decorative diamond strokes, and the italic hero accent word. Brightens to `Clay Bright` (`#d9944f`) on link hover and the hero accent. This is the color of stadium light.
 - **Deep Stadium Blue** (`#002d72`): The cool counter-glow, used atmospherically in hero/section radial gradients and as a deep structural accent. `Blue Light` (`#1a4a8a`) for raised variants.
 
 ### Tertiary
@@ -154,6 +160,7 @@ A cool dark palette lit by three warm/saturated accents and a consistent three-c
 **Display Font:** Playfair Display (with Georgia, 'Times New Roman', serif)
 **Body Font:** Geist (with system-ui, sans-serif)
 **Label/Mono Font:** DM Mono (with 'SF Mono', 'Fira Code', monospace) for all numbers and stats
+**Annotation Font:** Newsreader (with Georgia, serif) for SVG diagram and chart labels
 
 **Character:** A high-contrast serif (Playfair) for the editorial voice, paired against a clean modern sans (Geist) on the serif-vs-sans contrast axis — never two similar sans together. DM Mono gives velocity, break, and usage numbers the precise, tabular feel of a stat line. Newsreader is used inside SVG diagram labels for print-like annotation.
 
@@ -162,8 +169,9 @@ A cool dark palette lit by three warm/saturated accents and a consistent three-c
 - **Headline** (Playfair, 700, `clamp(1.8rem, 4vw, 2.75rem)`, lh 1.18): Section `h2` headers.
 - **Title** (Geist, 600, ~1.05rem, lh 1.3): `h4`–`h6`, card titles, sub-headings — sans, not serif, at small sizes for legibility.
 - **Body** (Geist, 400, 1rem, lh 1.72): Reading prose. Cap measure at 65–75ch.
-- **Label** (Geist, 700, 0.72rem, ls 0.16em, UPPERCASE, clay): Section labels, badges, nav links, small UI — the only place tracked uppercase is allowed.
+- **Label** (Geist, 700, 0.72rem, ls 0.16em, UPPERCASE, clay): Badges, nav links, small UI — the only place tracked uppercase is allowed.
 - **Data** (DM Mono, 500, ~1.1rem): Velocity, break, count, and usage numbers.
+- **Annotation** (Newsreader, 600, ~10px): SVG diagram and chart labels (trajectories, strike-zone maps), for a print-like editorial caption feel.
 
 ### Named Rules
 **The Serif-Up-Top Rule.** Playfair appears only at `h1`–`h3` display sizes, where its high contrast sings. Below ~1.3rem, switch to Geist — small Playfair turns spindly and hurts legibility.
@@ -218,6 +226,7 @@ The defining component. A pitch card carries the family top-stripe, a mono abbre
 ## 6. Do's and Don'ts
 
 ### Do:
+- **Do** present parallel content as **ruled editorial grids** — borderless entries separated by hairline rules (`1px solid #1f3050`), serif heading + prose, not boxed cards. This is the house pattern for Basics, Pitcher Types, Strategy, and Legends. Reserve actual bordered cards for genuinely card-shaped affordances (the connected pitch index, glossary terms).
 - **Do** keep the body ground dark navy (`#0a1628`); let warmth arrive through clay, red, type, and glows — never a tinted-light background.
 - **Do** reserve Mound Red (`#c8102e`) for the single primary action and the brand mark (The One Red Rule).
 - **Do** set every stat and number in DM Mono so data reads as data.
@@ -228,7 +237,7 @@ The defining component. A pitch card carries the family top-stripe, a mono abbre
 - **Do** give every animation (shimmer, trajectory draw, card lift, reveals) a `prefers-reduced-motion: reduce` fallback.
 
 ### Don't:
-- **Don't** build the **generic SaaS landing page** — no gradient-hero-plus-feature-card-grid, and no tiny tracked eyebrow on *every* section (the clay section label is a single deliberate kicker system, not a per-block reflex).
+- **Don't** build the **generic SaaS landing page** — no gradient-hero-plus-feature-card-grid, and no tiny tracked eyebrow above sections. Section headings carry a short clay accent rule instead; the kicker text was removed precisely because it had become a per-section reflex.
 - **Don't** let it read like a **dry textbook / Wikipedia** — no flat walls of reference text; pace and visualize the explanation.
 - **Don't** adopt **loud ESPN / sportsbook hype** — no garish screaming graphics, ad-clutter density, or breaking-news energy.
 - **Don't** go **childish or clip-art** — no cartoon illustration, emoji soup, or primary-color kiddie treatment, despite the beginner audience.

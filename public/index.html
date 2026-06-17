@@ -83,39 +83,48 @@
 <section class="hero" id="hero">
   <div class="hero-content">
     <div class="hero-badge">The Complete Beginner's Guide</div>
-    <h1>Every Pitch Tells a Story</h1>
-    <p>From four-seam fastballs to knee-buckling curves — learn how pitchers use speed, spin, and deception to dominate the game.</p>
+    <h1>Every Pitch Tells a <em>Story</em></h1>
+    <p>From four-seam fastballs to knee-buckling curves, learn how pitchers use speed, spin, and deception to dominate the game.</p>
     <a href="#basics" class="hero-cta">
       Start Learning
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>
     </a>
     <!-- Hero SVG: stylized pitch trajectory -->
     <div class="hero-visual">
-      <svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pitch trajectory comparison showing fastball, curveball, and changeup paths from mound to plate">
+      <svg viewBox="0 0 540 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Side view comparing three pitches thrown from the same release point to home plate: a 96 mph fastball that stays high in the strike zone, an 85 mph changeup that sinks to the middle, and a 79 mph curveball that humps up then drops sharply through the bottom of the zone.">
+        <!-- Ground line -->
+        <line x1="58" y1="190" x2="478" y2="190" stroke="#243352" stroke-width="1.5"/>
         <!-- Mound -->
-        <ellipse cx="60" cy="180" rx="28" ry="8" fill="#1e293b" opacity="0.6"/>
+        <ellipse cx="74" cy="190" rx="26" ry="6" fill="#1e293b" opacity="0.7"/>
+        <!-- Strike zone at the plate -->
+        <rect x="426" y="112" width="34" height="64" fill="#60a5fa" opacity="0.05"/>
+        <rect x="426" y="112" width="34" height="64" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3" opacity="0.45"/>
+        <text x="443" y="106" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="9" opacity="0.75">strike zone</text>
+        <!-- Release point -->
+        <circle cx="74" cy="66" r="3.5" fill="#94a3b8" opacity="0.7"/>
+        <text x="74" y="56" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="9">release</text>
         <!-- Plate -->
-        <polygon points="450,172 462,180 462,188 438,188 438,180" fill="#94a3b8" opacity="0.4"/>
-        <!-- Fastball trajectory -->
-        <path d="M80,170 Q270,130 450,175" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
-        <circle cx="450" cy="175" r="4" fill="#ef4444" opacity="0.8"/>
-        <!-- Curveball trajectory -->
-        <path d="M80,165 Q240,90 450,185" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
-        <circle cx="450" cy="185" r="4" fill="#60a5fa" opacity="0.8"/>
-        <!-- Changeup trajectory -->
-        <path d="M80,168 Q260,150 450,190" fill="none" stroke="#4ade80" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
-        <circle cx="450" cy="190" r="4" fill="#4ade80" opacity="0.8"/>
-        <!-- Labels -->
-        <text x="460" y="177" fill="#ef4444" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">Fastball</text>
-        <text x="460" y="188" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">Curveball</text>
-        <text x="460" y="199" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">Changeup</text>
-        <!-- Speed labels -->
-        <text x="240" y="122" fill="#ef4444" font-family="Newsreader,Georgia,serif" font-size="9" font-weight="500" opacity="0.8">96 mph</text>
-        <text x="210" y="88" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="9" font-weight="500" opacity="0.8">79 mph</text>
-        <text x="240" y="148" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="9" font-weight="500" opacity="0.8">85 mph</text>
-        <!-- Distance marker -->
-        <line x1="80" y1="200" x2="450" y2="200" stroke="#243352" stroke-width="1"/>
-        <text x="240" y="215" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="9" text-anchor="middle">60 feet, 6 inches</text>
+        <polygon points="430,192 456,192 456,197 443,201 430,197" fill="#94a3b8" opacity="0.5"/>
+        <text x="443" y="214" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="9">home plate</text>
+        <text x="255" y="214" text-anchor="middle" fill="#5a6f97" font-family="Newsreader,Georgia,serif" font-size="9">60 feet, 6 inches</text>
+
+        <!-- Fastball: stays high, only a slight sag -->
+        <path d="M74,68 Q260,82 440,122" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="440" cy="122" r="3.5" fill="#ef4444"/>
+        <text x="232" y="92" fill="#ef4444" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">96 mph</text>
+        <text x="466" y="125" fill="#ef4444" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">Fastball</text>
+
+        <!-- Changeup: same look out of the hand, then sinks -->
+        <path d="M74,70 Q280,104 440,150" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="440" cy="150" r="3.5" fill="#4ade80"/>
+        <text x="248" y="134" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">85 mph</text>
+        <text x="466" y="153" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">Changeup</text>
+
+        <!-- Curveball: humps up, then drops sharply (12-to-6) -->
+        <path d="M74,72 C168,38 346,108 440,172" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="440" cy="172" r="3.5" fill="#60a5fa"/>
+        <text x="176" y="56" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">79 mph</text>
+        <text x="466" y="175" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="600">Curveball</text>
       </svg>
     </div>
   </div>
@@ -125,7 +134,6 @@
 <section class="section section--alt" id="basics">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Start Here</div>
       <h2>Understanding the Basics</h2>
       <p>Before diving into pitch types, here is what every newcomer needs to know about how pitching works.</p>
     </div>
@@ -136,14 +144,14 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20"/></svg>
         </div>
         <h3>What Is Pitching?</h3>
-        <p>The pitcher stands on a raised mound 60 feet, 6 inches from home plate and throws the baseball toward the batter. The goal: get the batter out — either by striking them out, or by inducing weak contact that the defense can handle. A pitcher faces the opposing lineup 2–3 times per game, so variety and deception are essential.</p>
+        <p>The pitcher stands on a raised mound 60 feet, 6 inches from home plate and throws the baseball toward the batter. The goal: get the batter out, either by striking them out or by inducing weak contact that the defense can handle. A pitcher faces the opposing lineup 2–3 times per game, so variety and deception are essential.</p>
       </div>
       <div class="basics-card">
         <div class="icon icon--blue">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
         </div>
         <h3>Balls, Strikes &amp; The Count</h3>
-        <p>Each pitch is called a <strong>ball</strong> (outside the strike zone) or a <strong>strike</strong> (in the zone, or swung at and missed). Three strikes and the batter is out (<strong>strikeout</strong>). Four balls and the batter walks to first base (<strong>walk</strong>). The <strong>count</strong> tracks these — written as balls-strikes. So "2-1" means 2 balls, 1 strike.</p>
+        <p>Each pitch is called a <strong>ball</strong> (outside the strike zone) or a <strong>strike</strong> (in the zone, or swung at and missed). Three strikes and the batter is out (<strong>strikeout</strong>). Four balls and the batter walks to first base (<strong>walk</strong>). The <strong>count</strong> tracks these, written as balls-strikes. So "2-1" means 2 balls, 1 strike.</p>
       </div>
       <div class="basics-card">
         <div class="icon icon--green">
@@ -164,7 +172,7 @@
     <!-- Quick analogy callout -->
     <div class="strategy-example strategy-example--callout">
       <div class="example-label">Think of it this way</div>
-      <p>A 95 mph fastball reaches the plate in about 400 milliseconds — roughly the time it takes to blink. The batter must decide to swing when the ball is barely halfway there. That is why deception works: the human brain physically cannot wait to see what the pitch does before committing.</p>
+      <p>A 95 mph fastball reaches the plate in about 400 milliseconds, roughly the time it takes to blink. The batter must decide to swing when the ball is barely halfway there. That is why deception works: the human brain physically cannot wait to see what the pitch does before committing.</p>
     </div>
   </div>
 </section>
@@ -173,21 +181,20 @@
 <section class="section" id="cheat-sheet">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Quick Reference</div>
       <h2>The Essential Pitches at a Glance</h2>
-      <p>Before the deep dive — here is a one-line summary of each pitch type.</p>
+      <p>Before the deep dive, here is a one-line summary of each pitch type.</p>
     </div>
     <div class="cheat-sheet">
       <div class="cheat-item"><span class="cheat-dot fastball"></span><strong>Four-Seam:</strong> <span>Straight, fast, the baseline pitch</span></div>
       <div class="cheat-item"><span class="cheat-dot fastball"></span><strong>Two-Seam:</strong> <span>Fastball that tails to the arm side</span></div>
-      <div class="cheat-item"><span class="cheat-dot fastball"></span><strong>Cutter:</strong> <span>Fastball that darts glove-side — jams hitters</span></div>
-      <div class="cheat-item"><span class="cheat-dot fastball"></span><strong>Sinker:</strong> <span>Fastball that drops and runs — ground balls</span></div>
-      <div class="cheat-item"><span class="cheat-dot breaking"></span><strong>Curveball:</strong> <span>Slow, big drop — the classic "Uncle Charlie"</span></div>
-      <div class="cheat-item"><span class="cheat-dot breaking"></span><strong>Slider:</strong> <span>Late sharp break — top strikeout pitch</span></div>
-      <div class="cheat-item"><span class="cheat-dot breaking"></span><strong>Sweeper:</strong> <span>Extreme horizontal slide — modern breakout pitch</span></div>
-      <div class="cheat-item"><span class="cheat-dot offspeed"></span><strong>Changeup:</strong> <span>Looks like a fastball, arrives slower — timing disruptor</span></div>
-      <div class="cheat-item"><span class="cheat-dot offspeed"></span><strong>Splitter:</strong> <span>Falls off the table — the best chase pitch in baseball</span></div>
-      <div class="cheat-item"><span class="cheat-dot offspeed"></span><strong>Knuckleball:</strong> <span>No spin, unpredictable flutter — a rarity</span></div>
+      <div class="cheat-item"><span class="cheat-dot fastball"></span><strong>Cutter:</strong> <span>Fastball that darts glove-side to jam hitters</span></div>
+      <div class="cheat-item"><span class="cheat-dot fastball"></span><strong>Sinker:</strong> <span>Fastball that drops and runs for ground balls</span></div>
+      <div class="cheat-item"><span class="cheat-dot breaking"></span><strong>Curveball:</strong> <span>Slow, with a big drop; the classic "Uncle Charlie"</span></div>
+      <div class="cheat-item"><span class="cheat-dot breaking"></span><strong>Slider:</strong> <span>Late sharp break; the top strikeout pitch</span></div>
+      <div class="cheat-item"><span class="cheat-dot breaking"></span><strong>Sweeper:</strong> <span>Extreme horizontal slide; the modern breakout pitch</span></div>
+      <div class="cheat-item"><span class="cheat-dot offspeed"></span><strong>Changeup:</strong> <span>Looks like a fastball but arrives slower to disrupt timing</span></div>
+      <div class="cheat-item"><span class="cheat-dot offspeed"></span><strong>Splitter:</strong> <span>Falls off the table; the best chase pitch in baseball</span></div>
+      <div class="cheat-item"><span class="cheat-dot offspeed"></span><strong>Knuckleball:</strong> <span>No spin, an unpredictable flutter, a true rarity</span></div>
     </div>
   </div>
 </section>
@@ -196,7 +203,6 @@
 <section class="section section--alt" id="arsenal">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">The Arsenal</div>
       <h2>Pitch Types</h2>
       <p>Every pitch a modern pitcher can throw, organized by family. Click any card to see the full breakdown.</p>
     </div>
@@ -276,7 +282,7 @@
           <div><h3>Two-Seam Fastball</h3></div>
           <span class="card-abbr">FT</span>
         </div>
-        <p class="card-summary">A fastball that tails sharply toward the pitcher's arm side. Less "rise" than a four-seam but much more horizontal run — it darts and bores in on batters.</p>
+        <p class="card-summary">A fastball that tails sharply toward the pitcher's arm side. Less "rise" than a four-seam but much more horizontal run, so it darts and bores in on batters.</p>
         <div class="card-stats">
           <div class="card-stat"><div class="label">Velocity</div><div class="value">89–96</div></div>
           <div class="card-stat"><div class="label">V-Break</div><div class="value">+10"</div></div>
@@ -325,7 +331,7 @@
           <div><h3>Cutter</h3></div>
           <span class="card-abbr">FC</span>
         </div>
-        <p class="card-summary">A fastball that breaks slightly toward the glove side at the last moment. It jams same-handed batters and shatters bats — the pitch Mariano Rivera used to become the greatest closer ever.</p>
+        <p class="card-summary">A fastball that breaks slightly toward the glove side at the last moment. It jams same-handed batters and shatters bats. This was the pitch Mariano Rivera used to become the greatest closer ever.</p>
         <div class="card-stats">
           <div class="card-stat"><div class="label">Velocity</div><div class="value">85–95</div></div>
           <div class="card-stat"><div class="label">V-Break</div><div class="value">+11"</div></div>
@@ -374,7 +380,7 @@
           <div><h3>Sinker</h3></div>
           <span class="card-abbr">SI</span>
         </div>
-        <p class="card-summary">A fastball that dives downward with heavy arm-side run. It's the go-to pitch for ground-ball pitchers — batters hit the top of the ball, producing weak rollers and double plays.</p>
+        <p class="card-summary">A fastball that dives downward with heavy arm-side run. It's the go-to pitch for ground-ball pitchers, since batters hit the top of the ball, producing weak rollers and double plays.</p>
         <div class="card-stats">
           <div class="card-stat"><div class="label">Velocity</div><div class="value">89–97</div></div>
           <div class="card-stat"><div class="label">V-Break</div><div class="value">+7"</div></div>
@@ -400,7 +406,7 @@
             <!-- Drop annotation -->
             <line x1="235" y1="120" x2="235" y2="145" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2" opacity="0.7"/>
             <text x="250" y="137" fill="#ef4444" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600">SINK</text>
-            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW — extra drop vs. spinless ball</text>
+            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW:extra drop vs. spinless ball</text>
           </svg>
         </div>
         <div class="card-details">
@@ -408,7 +414,7 @@
             <h4>Grip</h4>
             <p>Nearly identical to the two-seam grip, with fingers along the narrow seams. More index-finger pressure or slight pronation (inward rotation of the forearm) at release increases the sinking action.</p>
             <h4>What the Batter Sees</h4>
-            <p>Looks like a fastball but drops more than expected, diving toward the knees. Like a bowling ball coming off the hand — heavy and sinking. Batters tend to hit the top half of the ball, producing ground balls.</p>
+            <p>Looks like a fastball but drops more than expected, diving toward the knees. Like a bowling ball coming off the hand, heavy and sinking. Batters tend to hit the top half of the ball, producing ground balls.</p>
             <h4>When It's Used</h4>
             <p>The double-play pitch. Thrown low in the zone with runners on base. Ground-ball pitchers build their entire approach around the sinker.</p>
             <h4>Famous For</h4>
@@ -428,7 +434,7 @@
           <div><h3>Curveball</h3></div>
           <span class="card-abbr">CU</span>
         </div>
-        <p class="card-summary">The classic breaking ball. Strong topspin makes it drop sharply — the famous 12-to-6 trajectory. Like tossing a ball off a table edge, except at 80 mph.</p>
+        <p class="card-summary">The classic breaking ball. Strong topspin makes it drop sharply along the famous 12-to-6 trajectory. Like tossing a ball off a table edge, except at 80 mph.</p>
         <div class="card-stats">
           <div class="card-stat"><div class="label">Velocity</div><div class="value">72–85</div></div>
           <div class="card-stat"><div class="label">V-Break</div><div class="value">-6 to -14"</div></div>
@@ -456,7 +462,7 @@
             <line x1="235" y1="110" x2="235" y2="160" stroke="#60a5fa" stroke-width="1" stroke-dasharray="2,2" opacity="0.7"/>
             <text x="256" y="138" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600">12-6</text>
             <text x="256" y="148" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="7">DROP</text>
-            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW — the classic "hump" and drop</text>
+            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW:the classic "hump" and drop</text>
           </svg>
         </div>
         <div class="card-details">
@@ -464,7 +470,7 @@
             <h4>Grip</h4>
             <p>Middle finger along the seam with index finger tucked next to it. At release, the pitcher snaps the wrist forward and pulls down, creating strong topspin. The ball rolls off the front of the fingers.</p>
             <h4>What the Batter Sees</h4>
-            <p>The classic "hump" — initially appears headed at the batter's eye level, then drops sharply as it approaches the plate. The same Magnus effect that makes a fastball "rise" works in reverse here — topspin pushes the ball downward.</p>
+            <p>The classic "hump": it initially appears headed at the batter's eye level, then drops sharply as it approaches the plate. The same Magnus effect that makes a fastball "rise" works in reverse here, with topspin pushing the ball downward.</p>
             <h4>When It's Used</h4>
             <p>A nasty "chase" pitch below the zone on two-strike counts. Also thrown early for a called strike since the speed difference (12–18 mph slower than the fastball) disrupts timing.</p>
             <h4>Famous For</h4>
@@ -510,7 +516,7 @@
             <!-- Late break annotation -->
             <text x="88" y="140" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600">LATE</text>
             <text x="88" y="150" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600">BREAK</text>
-            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">OVERHEAD VIEW — late glove-side dart</text>
+            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">OVERHEAD VIEW:late glove-side dart</text>
           </svg>
         </div>
         <div class="card-details">
@@ -538,7 +544,7 @@
           <div><h3>Sweeper</h3></div>
           <span class="card-abbr">ST</span>
         </div>
-        <p class="card-summary">The modern game's breakout pitch. Extreme horizontal sweep like a frisbee — up to 18 inches of lateral movement. Classified as its own pitch type by Statcast (MLB's pitch-tracking technology) in 2023.</p>
+        <p class="card-summary">The modern game's breakout pitch. Extreme horizontal sweep like a frisbee, up to 18 inches of lateral movement. Classified as its own pitch type by Statcast (MLB's pitch-tracking technology) in 2023.</p>
         <div class="card-stats">
           <div class="card-stat"><div class="label">Velocity</div><div class="value">78–86</div></div>
           <div class="card-stat"><div class="label">V-Break</div><div class="value">~0"</div></div>
@@ -561,7 +567,7 @@
             <line x1="140" y1="140" x2="103" y2="140" stroke="#60a5fa" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
             <text x="115" y="133" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600" text-anchor="middle">~16"</text>
             <text x="73" y="152" fill="#60a5fa" font-family="Newsreader,Georgia,serif" font-size="7">SWEEP</text>
-            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">OVERHEAD VIEW — extreme horizontal sweep</text>
+            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">OVERHEAD VIEW:extreme horizontal sweep</text>
           </svg>
         </div>
         <div class="card-details">
@@ -614,7 +620,7 @@
             <text x="130" y="56" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="8" text-anchor="middle">8–15 mph SLOWER arrival</text>
             <!-- Fade label -->
             <text x="250" y="138" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600">FADE</text>
-            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW — same arm action, later arrival</text>
+            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW:same arm action, later arrival</text>
           </svg>
         </div>
         <div class="card-details">
@@ -622,7 +628,7 @@
             <h4>Grip</h4>
             <p>The "circle change" is most common: thumb and index finger form a circle or "OK" sign on the side of the ball while the remaining three fingers spread across the top. This slows the ball without changing arm speed.</p>
             <h4>What the Batter Sees</h4>
-            <p>Designed to look exactly like a fastball out of the pitcher's hand — same arm speed, same arm slot. But it arrives 8–15 mph slower. The batter commits early, thinking fastball, and the ball "fades" below and to the arm side of where expected.</p>
+            <p>Designed to look exactly like a fastball out of the pitcher's hand, with the same arm speed and arm slot. But it arrives 8–15 mph slower. The batter commits early, thinking fastball, and the ball "fades" below and to the arm side of where expected.</p>
             <h4>When It's Used</h4>
             <p>Destroys opposite-handed batters. The go-to pitch after establishing the fastball. On two-strike counts, a well-located changeup below the zone gets absurd swing-and-miss rates. Tarik Skubal's changeup (47.9% whiff rate) powered back-to-back American League Cy Young Awards in 2024–2025.</p>
             <h4>Famous For</h4>
@@ -642,7 +648,7 @@
           <div><h3>Splitter</h3></div>
           <span class="card-abbr">FS</span>
         </div>
-        <p class="card-summary">Looks like a fastball coming in at belt height, then suddenly drops straight down — "falls off a table." Generates some of the highest chase rates in baseball.</p>
+        <p class="card-summary">Looks like a fastball coming in at belt height, then suddenly drops straight down, or "falls off a table." It generates some of the highest chase rates in baseball.</p>
         <div class="card-stats">
           <div class="card-stat"><div class="label">Velocity</div><div class="value">84–93</div></div>
           <div class="card-stat"><div class="label">V-Break</div><div class="value">-2 to -8"</div></div>
@@ -666,7 +672,7 @@
             <!-- "Dive zone" -->
             <text x="195" y="155" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="9" font-weight="700">"FALLS OFF</text>
             <text x="195" y="166" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="9" font-weight="700">THE TABLE"</text>
-            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW — dramatic late dive</text>
+            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">SIDE VIEW:dramatic late dive</text>
           </svg>
         </div>
         <div class="card-details">
@@ -694,7 +700,7 @@
           <div><h3>Knuckleball</h3></div>
           <span class="card-abbr">KN</span>
         </div>
-        <p class="card-summary">The wildcard. Almost zero spin means the ball flutters and dances unpredictably — like a balloon caught in a breeze. Neither the batter, catcher, nor pitcher knows where it will end up.</p>
+        <p class="card-summary">The wildcard. Almost zero spin means the ball flutters and dances unpredictably, like a balloon caught in a breeze. Neither the batter, catcher, nor pitcher knows where it will end up.</p>
         <div class="card-stats">
           <div class="card-stat"><div class="label">Velocity</div><div class="value">65–85</div></div>
           <div class="card-stat"><div class="label">V-Break</div><div class="value">???</div></div>
@@ -717,7 +723,7 @@
             <text x="118" y="95" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="700" opacity="0.6">?</text>
             <text x="160" y="125" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="10" font-weight="700" opacity="0.6">?</text>
             <text x="180" y="100" fill="#4ade80" font-family="Newsreader,Georgia,serif" font-size="8" font-weight="600">UNPREDICTABLE</text>
-            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">OVERHEAD VIEW — erratic, wobbling path</text>
+            <text x="140" y="196" text-anchor="middle" fill="#94a3b8" font-family="Newsreader,Georgia,serif" font-size="8">OVERHEAD VIEW:erratic, wobbling path</text>
           </svg>
         </div>
         <div class="card-details">
@@ -727,7 +733,7 @@
             <h4>What the Batter Sees</h4>
             <p>A floating, wobbling pitch that darts erratically in any direction. Extremely rare in modern MLB. Hitting one has been compared to "trying to eat Jell-O with chopsticks."</p>
             <h4>When It's Used</h4>
-            <p>Knuckleballers throw it on almost every pitch — it is their entire arsenal. A handful of specialists have built careers on it, but it requires a specially trained catcher to handle.</p>
+            <p>Knuckleballers throw it on almost every pitch; it is their entire arsenal. A handful of specialists have built careers on it, but it requires a specially trained catcher to handle.</p>
             <h4>Famous For</h4>
             <ul class="famous-list">
               <li>R.A. Dickey</li>
@@ -747,7 +753,6 @@
 <section class="section" id="pitcher-types">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">The Roles</div>
       <h2>Types of Pitchers</h2>
       <p>Different roles, different demands. A starting pitcher needs variety over 6+ innings; a closer needs dominance for one. Here is how modern teams staff the pitching mound.</p>
     </div>
@@ -760,7 +765,7 @@
           <span class="tag">85–110 pitches/game</span>
           <span class="tag">Every 5th day</span>
         </div>
-        <p>Begins the game and pitches 5–7 innings. Needs the deepest arsenal because they face the lineup 2–3 times. Performance declines each time through the order — a well-documented effect called the "times through the order penalty" — which is why modern managers rarely let starters go past 100 pitches.</p>
+        <p>Begins the game and pitches 5–7 innings. Needs the deepest arsenal because they face the lineup 2–3 times. Performance declines each time through the order, a well-documented effect called the "times through the order penalty," which is why modern managers rarely let starters go past 100 pitches.</p>
       </div>
       <div class="pitcher-type-card">
         <h3>Closer</h3>
@@ -769,7 +774,7 @@
           <span class="tag">~20 pitches/game</span>
           <span class="tag">9th inning</span>
         </div>
-        <p>Finishes the game when the team leads by 1–3 runs. Records the "save" — a stat awarded for protecting a close lead. Closers rely on overwhelming dominance rather than variety. Mariano Rivera famously used almost exclusively his cutter. They are the highest-pressure role on the staff.</p>
+        <p>Finishes the game when the team leads by 1–3 runs. Records the "save," a stat awarded for protecting a close lead. Closers rely on overwhelming dominance rather than variety. Mariano Rivera famously used almost exclusively his cutter. They are the highest-pressure role on the staff.</p>
       </div>
       <div class="pitcher-type-card">
         <h3>Setup Man</h3>
@@ -811,9 +816,8 @@
 <section class="section section--alt" id="strategy">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">The Mind Game</div>
       <h2>Strategy &amp; Sequencing</h2>
-      <p>Pitching is not just throwing hard — it's chess at 95 mph. How pitchers think about matchups, counts, and deception.</p>
+      <p>Pitching is not just throwing hard. It's chess at 95 mph. How pitchers think about matchups, counts, and deception.</p>
     </div>
 
     <!-- Count advantage grid -->
@@ -897,7 +901,7 @@
         <p>Introduced in 2023, the pitch clock is the biggest rule change to affect pitching strategy in decades. Pitchers have 15 seconds (bases empty) or 20 seconds (runners on) to begin their delivery. Pickoff attempts are limited to two per plate appearance. In 2026, MLB introduced the Automated Ball-Strike (ABS) Challenge System, powered by twelve high-speed Hawk-Eye cameras per stadium running on a 5G private network. Each team gets 2 challenges per game; only the batter, pitcher, or catcher may initiate a challenge by tapping their cap or helmet. Successful challenges are retained.</p>
         <div class="strategy-example">
           <div class="example-label">Impact</div>
-          <p>Pitchers can no longer step off the mound to reset a hitter's timing. Games are ~30 minutes shorter. The ABS challenge system means borderline pitches can now be overturned — adding a new strategic layer to pitch selection. Catcher framing, once the art of making borderline pitches look like strikes, now matters less on challenged calls since the computer zone is the final word.</p>
+          <p>Pitchers can no longer step off the mound to reset a hitter's timing. Games are ~30 minutes shorter. The ABS challenge system means borderline pitches can now be overturned, adding a new strategic layer to pitch selection. Catcher framing, once the art of making borderline pitches look like strikes, now matters less on challenged calls since the computer zone is the final word.</p>
         </div>
       </div>
       <div class="strategy-block">
@@ -985,7 +989,6 @@
 <section class="section" id="compare">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Compare</div>
       <h2>Pitch Comparison Tool</h2>
       <p>Select two pitches to see how they differ in velocity, movement, and usage side by side.</p>
     </div>
@@ -1041,9 +1044,8 @@
 <section class="section section--alt" id="legends">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Hall of Fame</div>
       <h2>Legendary Pitchers</h2>
-      <p>The all-time greats who defined — and redefined — what a pitch can do.</p>
+      <p>The all-time greats who defined, and redefined, what a pitch can do.</p>
     </div>
 
     <div class="legends-grid">
@@ -1060,7 +1062,7 @@
         <div class="legend-card-inner">
           <h3>Sandy Koufax</h3>
           <div class="legend-pitch">Signature: 12-to-6 Curveball</div>
-          <p>His curveball dropped 12–24 inches straight down — the archetype of the 12-to-6 curve. His large hands generated extraordinary spin, and paired with an estimated 93–97 mph fastball, the speed gap was impossible to time.</p>
+          <p>His curveball dropped 12–24 inches straight down, the archetype of the 12-to-6 curve. His large hands generated extraordinary spin, and paired with an estimated 93–97 mph fastball, the speed gap was impossible to time.</p>
           <span class="legend-stat">4 No-Hitters (incl. Perfect Game)</span>
           <div class="legend-story">Refused to pitch Game 1 of the 1965 World Series because it fell on Yom Kippur. Won three Cy Young Awards (best pitcher in the league) before retiring at just 30 due to arthritis.</div>
         </div>
@@ -1069,9 +1071,9 @@
         <div class="legend-card-inner">
           <h3>Nolan Ryan</h3>
           <div class="legend-pitch">Signature: Fastball</div>
-          <p>The all-time strikeout king threw 5,714 career strikeouts — a record that may never be broken. His fastball was measured at 100.9 mph at the plate in 1974, estimated at ~108 mph when measured at the release point (today's standard, which captures speed before air resistance slows the ball). He maintained 95+ mph into his mid-40s.</p>
+          <p>The all-time strikeout king threw 5,714 career strikeouts, a record that may never be broken. His fastball was measured at 100.9 mph at the plate in 1974, estimated at ~108 mph when measured at the release point (today's standard, which captures speed before air resistance slows the ball). He maintained 95+ mph into his mid-40s.</p>
           <span class="legend-stat">7 No-Hitters (All-Time Record)</span>
-          <div class="legend-story">At age 46 in 1993, Robin Ventura charged the mound after being hit by a pitch. Ryan put Ventura in a headlock and delivered several punches — one of baseball's most iconic moments.</div>
+          <div class="legend-story">At age 46 in 1993, Robin Ventura charged the mound after being hit by a pitch. Ryan put Ventura in a headlock and delivered several punches, one of baseball's most iconic moments.</div>
         </div>
       </div>
       <div class="legend-card">
@@ -1080,7 +1082,7 @@
           <div class="legend-pitch">Signature: Slider</div>
           <p>The 6'10" "Big Unit" combined a 97–100 mph fastball with a slider that left-handed batters simply could not hit (who hit just .197 against him). His release point seemed to come from behind the batter due to his extreme height.</p>
           <span class="legend-stat">4,875 Strikeouts (2nd All-Time)</span>
-          <div class="legend-story">During a 2001 spring training game, Johnson hit a bird mid-flight with a fastball. The bird exploded in a cloud of feathers — one of the most surreal moments in sports history.</div>
+          <div class="legend-story">During a 2001 spring training game, Johnson hit a bird mid-flight with a fastball. The bird exploded in a cloud of feathers, one of the most surreal moments in sports history.</div>
         </div>
       </div>
       <div class="legend-card">
@@ -1089,7 +1091,7 @@
           <div class="legend-pitch">Signature: Two-Seam Fastball</div>
           <p>The proof that pitching is about movement and location, not velocity. His two-seamer sat at 85–90 mph but moved with surgical precision, hitting the edges of the plate within fractions of an inch.</p>
           <span class="legend-stat">4 Consecutive Cy Young Awards (1992–95)</span>
-          <div class="legend-story">Posted a 1.56 ERA in 1994 — one of the greatest single seasons in modern history — by inducing weak ground balls and pop-ups rather than overpowering anyone.</div>
+          <div class="legend-story">Posted a 1.56 ERA in 1994, one of the greatest single seasons in modern history, by inducing weak ground balls and pop-ups rather than overpowering anyone.</div>
         </div>
       </div>
       <div class="legend-card">
@@ -1098,7 +1100,7 @@
           <div class="legend-pitch">Signature: Changeup</div>
           <p>His changeup had wicked arm-side fade at 84–87 mph against a 95–97 mph fastball. What made it special: identical arm speed to the fastball, making it invisible until too late. Dominated the height of the Steroid Era (the late 1990s–early 2000s, when widespread performance-enhancing drug use inflated offensive numbers).</p>
           <span class="legend-stat">3 Cy Young Awards</span>
-          <div class="legend-story">In 1999–2000, Martinez posted a combined 41-10 record with a 1.90 ERA in the most offense-heavy era in modern baseball — one of the greatest two-year stretches ever.</div>
+          <div class="legend-story">In 1999–2000, Martinez posted a combined 41-10 record with a 1.90 ERA in the most offense-heavy era in modern baseball, one of the greatest two-year stretches ever.</div>
         </div>
       </div>
       <div class="legend-card">
@@ -1113,9 +1115,9 @@
         <div class="legend-card-inner">
           <h3>Jacob deGrom</h3>
           <div class="legend-pitch">Signature: Fastball (97–99 mph avg)</div>
-          <p>DeGrom's fastball averaged 97–99 mph with ridiculous "rise." What made it so hard to hit was its combination with a 91–93 mph slider and 90–92 mph changeup — the narrow velocity gaps with different movement profiles meant batters could never square him up (hit the ball solidly).</p>
+          <p>DeGrom's fastball averaged 97–99 mph with ridiculous "rise." What made it so hard to hit was its combination with a 91–93 mph slider and 90–92 mph changeup. The narrow velocity gaps with different movement profiles meant batters could never square him up (hit the ball solidly).</p>
           <span class="legend-stat">Back-to-Back Cy Young Awards (2018–19)</span>
-          <div class="legend-story">In 2018, deGrom posted a 1.70 ERA but only won 10 games — because the Mets could barely score runs for him. The "deGrom line" (7 innings pitched, 1 earned run, no-decision because the team failed to hold the lead) became a running joke.</div>
+          <div class="legend-story">In 2018, deGrom posted a 1.70 ERA but only won 10 games, because the Mets could barely score runs for him. The "deGrom line" (7 innings pitched, 1 earned run, no-decision because the team failed to hold the lead) became a running joke.</div>
         </div>
       </div>
       <div class="legend-card">
@@ -1123,7 +1125,7 @@
           <h3>Shohei Ohtani</h3>
           <div class="legend-pitch">Signature: Splitter</div>
           <p>Ohtani's splitter at 87–91 mph looks like a fastball before "falling off a table," generating extreme chase rates. In 2025, he returned to pitching for the Dodgers after his second elbow surgery and was even more electric: a career-high 98.4 mph four-seamer, a new slider with a 44% whiff rate, and a 2.87 ERA in 14 starts. As a two-way player (pitcher AND hitter), there has never been anyone like him.</p>
-          <span class="legend-stat">Two-Way Phenomenon — Back-to-Back World Series Champion</span>
+          <span class="legend-stat">Two-Way Phenomenon · Back-to-Back World Series Champion</span>
           <div class="legend-story">Ohtani helped the Dodgers repeat as World Series champions in 2025 with a dominant postseason on the mound.</div>
         </div>
       </div>
@@ -1131,9 +1133,9 @@
         <div class="legend-card-inner">
           <h3>Paul Skenes</h3>
           <div class="legend-pitch">Signature: Fastball + Splinker</div>
-          <p>Skenes won the 2024 National League Rookie of the Year and followed it with the 2025 NL Cy Young Award (1.97 ERA, 216 strikeouts) in just his second season — joining Dwight Gooden and Fernando Valenzuela as the only pitchers to win both within their first two years. His "splinker" (splitter-sinker hybrid) is thrown nearly 8 mph harder than the average splitter, with extra drop and arm-side run. Combined with a 98 mph fastball from one of the lowest arm slots (release angles) in the game, nobody else's arsenal looks like his.</p>
+          <p>Skenes won the 2024 National League Rookie of the Year and followed it with the 2025 NL Cy Young Award (1.97 ERA, 216 strikeouts) in just his second season, joining Dwight Gooden and Fernando Valenzuela as the only pitchers to win both within their first two years. His "splinker" (splitter-sinker hybrid) is thrown nearly 8 mph harder than the average splitter, with extra drop and arm-side run. Combined with a 98 mph fastball from one of the lowest arm slots (release angles) in the game, nobody else's arsenal looks like his.</p>
           <span class="legend-stat">2024 NL Rookie of the Year + 2025 NL Cy Young</span>
-          <div class="legend-story">Heading into 2026, Skenes has added a cutter and a slower slider variant nicknamed "The Sleeper" — the kind of constant tinkering that defines pitching in 2026.</div>
+          <div class="legend-story">Heading into 2026, Skenes has added a cutter and a slower slider variant nicknamed "The Sleeper," the kind of constant tinkering that defines pitching in 2026.</div>
         </div>
       </div>
     </div>
@@ -1144,7 +1146,6 @@
 <section class="section" id="glossary">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Reference</div>
       <h2>Glossary</h2>
       <p>Every term you'll encounter when learning about pitching, defined in plain language.</p>
     </div>
@@ -1177,7 +1178,7 @@
       </dl>
       <dl class="glossary-item" data-term="barrel">
         <dt>Barrel</dt>
-        <dd>The sweet spot — the thick, hitting end of the bat. "Off the barrel" means solid contact. A "barrel" in analytics is a batted ball with optimal exit velocity and launch angle.</dd>
+        <dd>The sweet spot: the thick, hitting end of the bat. "Off the barrel" means solid contact. A "barrel" in analytics is a batted ball with optimal exit velocity and launch angle.</dd>
       </dl>
       <dl class="glossary-item" data-term="bullpen">
         <dt>Bullpen</dt>
@@ -1221,7 +1222,7 @@
       </dl>
       <dl class="glossary-item" data-term="inning">
         <dt>Inning</dt>
-        <dd>A division of the game. Each of the 9 innings has two halves — one team bats, then the other. Each half ends when three outs are recorded.</dd>
+        <dd>A division of the game. Each of the 9 innings has two halves: one team bats, then the other. Each half ends when three outs are recorded.</dd>
       </dl>
       <dl class="glossary-item" data-term="leverage">
         <dt>Leverage</dt>
@@ -1229,7 +1230,7 @@
       </dl>
       <dl class="glossary-item" data-term="put-away pitch">
         <dt>Put-Away Pitch</dt>
-        <dd>The pitch a pitcher goes to with two strikes to finish the at-bat — their best weapon for generating a strikeout.</dd>
+        <dd>The pitch a pitcher goes to with two strikes to finish the at-bat: their best weapon for generating a strikeout.</dd>
       </dl>
       <dl class="glossary-item" data-term="save">
         <dt>Save</dt>
@@ -1237,7 +1238,7 @@
       </dl>
       <dl class="glossary-item" data-term="the letters">
         <dt>The Letters</dt>
-        <dd>The lettering on a baseball jersey across the chest. "At the letters" means chest height — near the top of the strike zone.</dd>
+        <dd>The lettering on a baseball jersey across the chest. "At the letters" means chest height, near the top of the strike zone.</dd>
       </dl>
       <dl class="glossary-item" data-term="the rubber">
         <dt>The Rubber</dt>
@@ -1268,6 +1269,11 @@
         <dd>A pitch with extreme movement that generates a high rate of swings-and-misses. Usually a slider, curveball, or splitter.</dd>
       </dl>
     </div>
+
+    <p class="glossary-empty" id="glossary-empty" hidden>
+      No terms match &ldquo;<span class="empty-query"></span>&rdquo;. Try a pitch name, a stat, or a word like <button type="button" class="glossary-empty-suggest">deception</button>.
+    </p>
+    <p class="visually-hidden" id="glossary-status" role="status" aria-live="polite"></p>
   </div>
 </section>
 
@@ -1276,7 +1282,7 @@
 <!-- ============================== FOOTER ============================== -->
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; 2026 Pitching 101 — Built with data from Baseball Savant, FanGraphs, Baseball Reference, and MLB.com. Reflects MLB data through the 2025–2026 seasons. Not affiliated with Major League Baseball.</p>
+    <p>&copy; 2026 Pitching 101. Built with data from Baseball Savant, FanGraphs, Baseball Reference, and MLB.com. Reflects MLB data through the 2025–2026 seasons. Not affiliated with Major League Baseball.</p>
   </div>
 </footer>
 
