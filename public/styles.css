@@ -9,7 +9,7 @@
      Clay:     #c4793a
      Grass:    #2d5a27
      Card:     #131d30
-     Muted:    #8899b0
+     Muted:    #94a3bb
    ======================================================== */
 
 /* ---------- Reset & Custom Properties ---------- */
@@ -37,7 +37,7 @@
   --gray: #1e293b;
   --card-bg: #131d30;
   --card-border: #1f3050;
-  --muted: #8899b0;
+  --muted: #94a3bb;
   --text: #c9d5e3;
   --heading: #f0f4f8;
   --fastball-color: #ef4444;
@@ -261,6 +261,10 @@ h4, h5, h6 {
   border: none;
   cursor: pointer;
   padding: 4px;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  align-items: center;
 }
 
 #hamburger-btn span {
@@ -520,6 +524,7 @@ h4, h5, h6 {
 
 .pitch-family-tab {
   padding: 10px 24px;
+  min-height: 44px;
   border-radius: 100px;
   border: 1px solid var(--card-border);
   background: transparent;
@@ -634,6 +639,7 @@ h4, h5, h6 {
 .card-toggle {
   width: 100%;
   padding: 14px 28px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -765,7 +771,7 @@ h4, h5, h6 {
   padding: 18px 20px;
   background: rgba(10, 22, 40, 0.6);
   border-radius: 10px;
-  border-left: 3px solid var(--clay);
+  border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .strategy-example .example-label {
@@ -790,6 +796,10 @@ h4, h5, h6 {
   gap: 6px;
   max-width: 480px;
   margin: 0 auto 20px;
+}
+
+.count-grid > [role="row"] {
+  display: contents;
 }
 
 .count-axis-label {
@@ -1099,7 +1109,7 @@ h4, h5, h6 {
   font-size: 0.85rem;
   color: var(--cream);
   font-style: italic;
-  border-left: 3px solid var(--clay);
+  border: 1px solid rgba(148, 163, 184, 0.1);
   line-height: 1.7;
 }
 
@@ -1270,15 +1280,23 @@ h4, h5, h6 {
     flex-direction: column;
     align-items: center;
     padding: 28px 0;
-    gap: 16px;
+    gap: 4px;
     transform: translateY(-120%);
     opacity: 0;
     transition: transform 0.35s ease, opacity 0.35s ease;
     pointer-events: none;
   }
 
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 16px;
+  }
+
   .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-  #hamburger-btn { display: block; }
+  #hamburger-btn { display: flex; }
   .hero { min-height: auto; padding: 110px 20px 64px; }
   .basics-grid { grid-template-columns: 1fr; }
   .pitch-grid { grid-template-columns: 1fr; }
@@ -1675,7 +1693,9 @@ h4, h5, h6 {
 }
 
 .sz-pitch-btn {
-  padding: 6px 14px;
+  padding: 10px 14px;
+  min-height: 44px;
+  min-width: 44px;
   border-radius: 100px;
   border: 1px solid var(--card-border);
   background: transparent;
@@ -1688,6 +1708,8 @@ h4, h5, h6 {
   text-align: left;
   white-space: nowrap;
   line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
 }
 
 .sz-pitch-btn:hover {
@@ -1821,8 +1843,10 @@ h4, h5, h6 {
 }
 
 .glossary-tooltip-trigger:hover .glossary-tooltip,
-.glossary-tooltip-trigger:focus .glossary-tooltip {
+.glossary-tooltip-trigger:focus .glossary-tooltip,
+.glossary-tooltip-trigger.tooltip-active .glossary-tooltip {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* ---------- Sort controls ---------- */
@@ -1836,6 +1860,7 @@ h4, h5, h6 {
 
 .sort-btn {
   padding: 8px 18px;
+  min-height: 44px;
   border-radius: 100px;
   border: 1px solid var(--card-border);
   background: transparent;
@@ -1900,6 +1925,20 @@ h4, h5, h6 {
   .sort-controls {
     gap: 8px;
   }
+
+  .glossary-tooltip {
+    max-width: calc(100vw - 32px);
+    width: max-content;
+  }
+
+  .count-grid {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sz-pitch-group {
+    gap: 8px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1911,4 +1950,16 @@ h4, h5, h6 {
   .sz-edge-label {
     font-size: 0.58rem;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .reveal.visible { transition: none; }
 }
