@@ -570,7 +570,13 @@ h4, h5, h6 {
   background: var(--navy-light);
   position: relative;
   transition: background var(--transition);
+  display: flex;
+  flex-direction: column;
 }
+
+/* Content flows top-down; the SHOW DETAILS footer pins to the bottom so it
+   lines up across every cell in a row instead of floating in stretched space. */
+.pitch-card .card-toggle { margin-top: auto; }
 
 .pitch-card::before {
   content: '';
