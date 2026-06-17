@@ -17,9 +17,9 @@ The complete beginner's guide to MLB pitching. A single-page interactive site co
 
 Static single-page site. No frameworks, no build step.
 
-- `index.html` -- all content
-- `styles.css` -- dark theme using CSS custom properties
-- `scripts.js` -- interactivity (tooltips, pitch comparisons, animated SVG trajectories, strike zone heat maps)
+- `public/index.html` -- all content
+- `public/styles.css` -- dark theme using CSS custom properties
+- `public/scripts.js` -- interactivity (tooltips, pitch comparisons, animated SVG trajectories, strike zone heat maps)
 
 ## Deploy
 
@@ -27,4 +27,4 @@ Hosted on Cloudflare Workers. Deploys automatically on push to `main`.
 
 ## Run locally
 
-Open `index.html` in a browser.
+Open `public/index.html` in a browser.

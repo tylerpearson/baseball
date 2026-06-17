@@ -228,6 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var hamburger = document.getElementById('hamburger-btn');
   var pitchGrid = document.getElementById('pitch-grid');
   var pitchFamilyTabs = document.getElementById('pitch-family-tabs');
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ============================================================
   // 3. SMOOTH SCROLL NAVIGATION + ACTIVE SECTION HIGHLIGHTING
@@ -239,9 +240,8 @@ document.addEventListener('DOMContentLoaded', function () {
       var href = this.getAttribute('href');
       if (href === '#') {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (navLinksContainer) navLinksContainer.classList.remove('open');
-        if (hamburger) hamburger.classList.remove('open');
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        if (navLinksContainer && hamburger && navLinksContainer.classList.contains('open')) closeNav();
         return;
       }
       var target = document.querySelector(href);
@@ -250,19 +250,62 @@ document.addEventListener('DOMContentLoaded', function () {
         var headerOffset = 72;
         var elementPosition = target.getBoundingClientRect().top;
         var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        // Close mobile nav
-        if (navLinksContainer) navLinksContainer.classList.remove('open');
-        if (hamburger) hamburger.classList.remove('open');
+        window.scrollTo({ top: offsetPosition, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        if (navLinksContainer && hamburger && navLinksContainer.classList.contains('open')) closeNav();
       }
     });
   });
 
   // Mobile nav toggle
+  function closeNav() {
+    navLinksContainer.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('keydown', navKeyHandler);
+  }
+
+  function openNav() {
+    navLinksContainer.classList.add('open');
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.addEventListener('keydown', navKeyHandler);
+    var firstLink = navLinksContainer.querySelector('a');
+    if (firstLink) firstLink.focus();
+  }
+
+  function navKeyHandler(e) {
+    if (e.key === 'Escape') {
+      closeNav();
+      hamburger.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = navLinksContainer.querySelectorAll('a, button');
+      if (focusable.length === 0) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  }
+
   if (hamburger && navLinksContainer) {
     hamburger.addEventListener('click', function () {
-      navLinksContainer.classList.toggle('open');
-      hamburger.classList.toggle('open');
+      var isOpen = navLinksContainer.classList.contains('open');
+      if (isOpen) {
+        closeNav();
+      } else {
+        openNav();
+      }
     });
   }
 
@@ -414,8 +457,10 @@ document.addEventListener('DOMContentLoaded', function () {
       currentFamily = tab.getAttribute('data-family');
       pitchFamilyTabs.querySelectorAll('.pitch-family-tab').forEach(function (t) {
         t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
       });
       tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
       filterAndSortCards();
     });
   }
@@ -452,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Knuckleball gets a unique wobbly path
     if (t.type === 'knuckle') {
-      return '<svg viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg" aria-label="Knuckleball trajectory: erratic path">' +
+      return '<svg viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Knuckleball trajectory: erratic path">' +
         '<rect x="5" y="5" width="160" height="130" rx="6" fill="#0a1628" stroke="#243352" stroke-width="1"/>' +
         '<line x1="85" y1="12" x2="85" y2="128" stroke="#243352" stroke-width="0.5" stroke-dasharray="3,3"/>' +
         '<circle cx="85" cy="18" r="3" fill="#94a3b8" opacity="0.4"/>' +
@@ -478,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     var label = pitch.name + ' trajectory';
-    return '<svg viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg" aria-label="' + label + '">' +
+    return '<svg viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="' + label + '">' +
       '<rect x="5" y="5" width="160" height="130" rx="6" fill="#0a1628" stroke="#243352" stroke-width="1"/>' +
       '<line x1="85" y1="12" x2="85" y2="128" stroke="#243352" stroke-width="0.5" stroke-dasharray="3,3"/>' +
       '<circle cx="85" cy="18" r="3" fill="#94a3b8" opacity="0.4"/>' +
@@ -541,49 +586,52 @@ document.addEventListener('DOMContentLoaded', function () {
     '.count-grid'
   ];
 
-  revealSelectors.forEach(function (sel) {
-    document.querySelectorAll(sel).forEach(function (el) {
-      el.classList.add('reveal');
-    });
-  });
-
-
-  if ('IntersectionObserver' in window) {
-    var revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          // Stagger siblings that are also in view
-          var parent = entry.target.parentElement;
-          if (parent) {
-            var siblings = parent.querySelectorAll('.reveal:not(.visible)');
-            var delay = 0;
-            siblings.forEach(function (sib) {
-              // For the triggering element, use the entry rect; for siblings,
-              // they will be revealed when their own observer fires.
-              if (sib === entry.target) {
-                sib.style.transitionDelay = delay * 0.06 + 's';
-                sib.classList.add('visible');
-                delay++;
-                revealObserver.unobserve(sib);
-              }
-            });
-          }
-          if (!entry.target.classList.contains('visible')) {
-            entry.target.classList.add('visible');
-          }
-          revealObserver.unobserve(entry.target);
-        }
+  if (prefersReducedMotion) {
+    revealSelectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        el.classList.add('reveal', 'visible');
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      revealObserver.observe(el);
     });
   } else {
-    // Fallback: show everything immediately
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      el.classList.add('visible');
+    revealSelectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        el.classList.add('reveal');
+      });
     });
+
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var parent = entry.target.parentElement;
+            if (parent) {
+              var siblings = parent.querySelectorAll('.reveal:not(.visible)');
+              var delay = 0;
+              siblings.forEach(function (sib) {
+                if (sib === entry.target) {
+                  sib.style.transitionDelay = delay * 0.06 + 's';
+                  sib.classList.add('visible');
+                  delay++;
+                  revealObserver.unobserve(sib);
+                }
+              });
+            }
+            if (!entry.target.classList.contains('visible')) {
+              entry.target.classList.add('visible');
+            }
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('visible');
+      });
+    }
   }
 
   // ============================================================
@@ -656,6 +704,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
   setupGlossaryTooltips();
 
+  function dismissAllTooltips() {
+    document.querySelectorAll('.glossary-tooltip-trigger.tooltip-active').forEach(function (el) {
+      el.classList.remove('tooltip-active');
+      var tip = el.querySelector('.glossary-tooltip');
+      if (tip) {
+        tip.style.left = '';
+        tip.style.right = '';
+        tip.style.top = '';
+        tip.style.bottom = '';
+        tip.style.transform = '';
+      }
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('.glossary-tooltip-trigger');
+    if (trigger) {
+      e.preventDefault();
+      var wasActive = trigger.classList.contains('tooltip-active');
+      dismissAllTooltips();
+      if (!wasActive) {
+        trigger.classList.add('tooltip-active');
+        var tooltip = trigger.querySelector('.glossary-tooltip');
+        if (tooltip) {
+          requestAnimationFrame(function () {
+            var tipRect = tooltip.getBoundingClientRect();
+            if (tipRect.left < 8) {
+              var shiftRight = 8 - tipRect.left;
+              tooltip.style.left = '50%';
+              tooltip.style.transform = 'translateX(calc(-50% + ' + shiftRight + 'px))';
+            } else if (tipRect.right > window.innerWidth - 8) {
+              var shiftLeft = tipRect.right - (window.innerWidth - 8);
+              tooltip.style.left = '50%';
+              tooltip.style.transform = 'translateX(calc(-50% - ' + shiftLeft + 'px))';
+            }
+            if (tipRect.top < 0) {
+              tooltip.style.bottom = 'auto';
+              tooltip.style.top = 'calc(100% + 8px)';
+            }
+          });
+        }
+      }
+    } else if (!e.target.closest('.glossary-tooltip')) {
+      dismissAllTooltips();
+    }
+  });
+
   // ============================================================
   // 10. INTERACTIVE STRIKE ZONE
   // ============================================================
@@ -708,13 +803,13 @@ document.addEventListener('DOMContentLoaded', function () {
     batterDiv.setAttribute('aria-hidden', 'true');
     batterDiv.innerHTML =
       '<svg width="40" height="120" viewBox="0 0 40 120" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-        '<circle cx="20" cy="12" r="8" stroke="#8899b0" stroke-width="1.5" fill="none"/>' +
-        '<line x1="20" y1="20" x2="20" y2="60" stroke="#8899b0" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<line x1="20" y1="60" x2="12" y2="95" stroke="#8899b0" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<line x1="20" y1="60" x2="28" y2="95" stroke="#8899b0" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<line x1="20" y1="32" x2="6" y2="22" stroke="#8899b0" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<line x1="6" y1="22" x2="2" y2="8" stroke="#8899b0" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<line x1="20" y1="35" x2="34" y2="42" stroke="#8899b0" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<circle cx="20" cy="12" r="8" stroke="#94a3bb" stroke-width="1.5" fill="none"/>' +
+        '<line x1="20" y1="20" x2="20" y2="60" stroke="#94a3bb" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<line x1="20" y1="60" x2="12" y2="95" stroke="#94a3bb" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<line x1="20" y1="60" x2="28" y2="95" stroke="#94a3bb" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<line x1="20" y1="32" x2="6" y2="22" stroke="#94a3bb" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<line x1="6" y1="22" x2="2" y2="8" stroke="#94a3bb" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<line x1="20" y1="35" x2="34" y2="42" stroke="#94a3bb" stroke-width="1.5" stroke-linecap="round"/>' +
       '</svg>';
     gridArea.appendChild(batterDiv);
 
@@ -820,6 +915,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Usage display (replaces heat legend bar)
     var usageDisplay = document.createElement('div');
     usageDisplay.className = 'sz-usage-display';
+    usageDisplay.setAttribute('aria-live', 'polite');
 
     var usageHeader = document.createElement('div');
     usageHeader.className = 'sz-usage-header';
@@ -875,14 +971,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function animateCounter(from, to, duration) {
       if (counterAnimId) cancelAnimationFrame(counterAnimId);
+      if (prefersReducedMotion) {
+        usageValue.textContent = (to < 1 ? to.toFixed(1) : Math.round(to)) + '%';
+        currentDisplayPct = to;
+        return;
+      }
       var start = null;
       function step(ts) {
         if (!start) start = ts;
         var progress = Math.min((ts - start) / duration, 1);
-        // ease-out cubic
         var eased = 1 - Math.pow(1 - progress, 3);
         var current = from + (to - from) * eased;
-        // Show one decimal for values < 1
         if (to < 1) {
           usageValue.textContent = current.toFixed(1) + '%';
         } else {
@@ -1022,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // animations. getTotalLength() is deferred until the card enters the
   // viewport to avoid forced layouts at page load.
 
-  if ('IntersectionObserver' in window) {
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
     var trajObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
@@ -1035,13 +1134,11 @@ document.addEventListener('DOMContentLoaded', function () {
         var paths = diagram.querySelectorAll('path[stroke-width="2.5"]');
         if (paths.length === 0) return;
 
-        // Lazy getTotalLength: only measured when card becomes visible
         paths.forEach(function (path) {
           var length = path.getTotalLength();
           path.style.strokeDasharray = length;
           path.style.strokeDashoffset = length;
           path.style.transition = 'none';
-          // Force a reflow so dashoffset is applied before transition starts
           path.getBoundingClientRect();
           setTimeout(function () {
             path.style.transition = 'stroke-dashoffset 1.2s ease-out';
@@ -1049,7 +1146,6 @@ document.addEventListener('DOMContentLoaded', function () {
           }, 50);
         });
 
-        // Fade in arrowheads matching the trajectory color
         var trajColor = paths[0].getAttribute('stroke');
         var allPolygons = diagram.querySelectorAll('polygon');
         allPolygons.forEach(function (pg) {
@@ -1076,34 +1172,33 @@ document.addEventListener('DOMContentLoaded', function () {
   // 12. HERO TRAJECTORY ANIMATION
   // ============================================================
 
-  var heroSvg = document.querySelector('.hero-visual svg');
-  if (heroSvg) {
-    var heroPaths = heroSvg.querySelectorAll('path');
+  if (!prefersReducedMotion) {
+    var heroSvg = document.querySelector('.hero-visual svg');
+    if (heroSvg) {
+      var heroPaths = heroSvg.querySelectorAll('path');
 
-    // Set up dash animation for hero paths
-    heroPaths.forEach(function (path) {
-      var length = path.getTotalLength();
-      path.style.strokeDasharray = length;
-      path.style.strokeDashoffset = length;
-    });
-
-    // Hide the endpoint circles (r="4") until animation completes
-    var heroEndpoints = heroSvg.querySelectorAll('circle[r="4"]');
-    heroEndpoints.forEach(function (c) {
-      c.style.opacity = '0';
-    });
-
-    // Staggered animation after page load
-    setTimeout(function () {
-      heroPaths.forEach(function (path, idx) {
-        path.style.transition = 'stroke-dashoffset ' + (0.8 + idx * 0.15) + 's ease-out ' + (idx * 0.2) + 's';
-        path.style.strokeDashoffset = '0';
+      heroPaths.forEach(function (path) {
+        var length = path.getTotalLength();
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
       });
-      heroEndpoints.forEach(function (c, idx) {
-        c.style.transition = 'opacity 0.4s ease ' + (0.8 + idx * 0.2) + 's';
-        c.style.opacity = '0.8';
+
+      var heroEndpoints = heroSvg.querySelectorAll('circle[r="4"]');
+      heroEndpoints.forEach(function (c) {
+        c.style.opacity = '0';
       });
-    }, 400);
+
+      setTimeout(function () {
+        heroPaths.forEach(function (path, idx) {
+          path.style.transition = 'stroke-dashoffset ' + (0.8 + idx * 0.15) + 's ease-out ' + (idx * 0.2) + 's';
+          path.style.strokeDashoffset = '0';
+        });
+        heroEndpoints.forEach(function (c, idx) {
+          c.style.transition = 'opacity 0.4s ease ' + (0.8 + idx * 0.2) + 's';
+          c.style.opacity = '0.8';
+        });
+      }, 400);
+    }
   }
 
   // ============================================================
@@ -1115,8 +1210,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!navLinksContainer || !hamburger) return;
     if (navLinksContainer.classList.contains('open')) {
       if (!navLinksContainer.contains(e.target) && !hamburger.contains(e.target)) {
-        navLinksContainer.classList.remove('open');
-        hamburger.classList.remove('open');
+        closeNav();
       }
     }
   });
