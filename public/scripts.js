@@ -599,7 +599,15 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    if ('IntersectionObserver' in window) {
+    // Failsafe: content must never stay gated on a reveal that doesn't fire
+    // (background/prerendered tabs pause IntersectionObserver and transitions).
+    function revealAll() {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
+        el.classList.add('visible');
+      });
+    }
+
+    if ('IntersectionObserver' in window && !document.hidden) {
       var revealObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -627,10 +635,16 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.reveal').forEach(function (el) {
         revealObserver.observe(el);
       });
-    } else {
-      document.querySelectorAll('.reveal').forEach(function (el) {
-        el.classList.add('visible');
+
+      // If the tab is backgrounded mid-load, reveal everything on return.
+      document.addEventListener('visibilitychange', function onVis() {
+        if (!document.hidden) { revealAll(); document.removeEventListener('visibilitychange', onVis); }
       });
+      // Last-resort failsafe: nothing stays hidden beyond a few seconds.
+      setTimeout(revealAll, 4000);
+    } else {
+      // No IntersectionObserver, or page hidden at load: show everything now.
+      revealAll();
     }
   }
 
@@ -641,9 +655,13 @@ document.addEventListener('DOMContentLoaded', function () {
   var glossarySearch = document.getElementById('glossary-search');
   if (glossarySearch) {
     var glossaryItems = document.querySelectorAll('.glossary-item');
+    var glossaryEmpty = document.getElementById('glossary-empty');
+    var glossaryStatus = document.getElementById('glossary-status');
+    var glossaryEmptyQuery = glossaryEmpty ? glossaryEmpty.querySelector('.empty-query') : null;
 
-    glossarySearch.addEventListener('input', debounce(function () {
-      var query = this.value.toLowerCase().trim();
+    function filterGlossary(query) {
+      query = query.toLowerCase().trim();
+      var matches = 0;
       glossaryItems.forEach(function (item) {
         var term = (item.getAttribute('data-term') || '').toLowerCase();
         var dt = item.querySelector('dt');
@@ -652,11 +670,41 @@ document.addEventListener('DOMContentLoaded', function () {
         var ddText = dd ? dd.textContent.toLowerCase() : '';
         if (!query || term.indexOf(query) !== -1 || dtText.indexOf(query) !== -1 || ddText.indexOf(query) !== -1) {
           item.style.display = '';
+          matches++;
         } else {
           item.style.display = 'none';
         }
       });
+
+      // Empty state: shown only when a query returns nothing.
+      if (glossaryEmpty) glossaryEmpty.hidden = !(query && matches === 0);
+      if (glossaryEmptyQuery) glossaryEmptyQuery.textContent = query;
+
+      // Announce the result count to screen readers (not on an empty query).
+      if (glossaryStatus) {
+        if (!query) {
+          glossaryStatus.textContent = '';
+        } else if (matches === 0) {
+          glossaryStatus.textContent = 'No terms match "' + query + '".';
+        } else {
+          glossaryStatus.textContent = matches + (matches === 1 ? ' term' : ' terms') + ' found.';
+        }
+      }
+    }
+
+    glossarySearch.addEventListener('input', debounce(function () {
+      filterGlossary(this.value);
     }, 150));
+
+    // "deception" suggestion button inside the empty state runs that search.
+    var emptySuggest = document.querySelector('.glossary-empty-suggest');
+    if (emptySuggest) {
+      emptySuggest.addEventListener('click', function () {
+        glossarySearch.value = this.textContent;
+        filterGlossary(glossarySearch.value);
+        glossarySearch.focus();
+      });
+    }
   }
 
   // ============================================================
@@ -773,7 +821,7 @@ document.addEventListener('DOMContentLoaded', function () {
       'knees to mid-chest. Different pitches tend to target different areas. ' +
       'Select a pitch below to see where it\u2019s most commonly thrown.</p>' +
       '<p class="sz-handedness-note">These diagrams show a <strong>right-handed pitcher</strong> facing a <strong>right-handed batter</strong>. ' +
-      'For a lefty pitcher, mirror "inside" and "outside" \u2014 the break directions flip horizontally.</p>';
+      'For a lefty pitcher, mirror "inside" and "outside"; the break directions flip horizontally.</p>';
     szContainer.parentNode.insertBefore(szIntro, szContainer);
 
     var szWrapper = document.createElement('div');

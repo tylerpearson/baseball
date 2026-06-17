@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-17T00:00:00.000Z",
+  "title": "Design System: Pitching 101",
+  "extensions": {
+    "colorMeta": {
+      "navy": { "role": "primary", "displayName": "Floodlit Navy", "canonical": "#0a1628", "tonalRamp": ["#05090f", "#0a1628", "#0d1b30", "#111f3a", "#1f3050", "#33486e", "#5a6f97", "#a9b6cf"] },
+      "red": { "role": "primary", "displayName": "Mound Red", "canonical": "#c8102e", "tonalRamp": ["#3a040d", "#5e0816", "#820b1f", "#a50d24", "#c8102e", "#e23b53", "#ef7184", "#f8b9c3"] },
+      "clay": { "role": "secondary", "displayName": "Dusk Clay", "canonical": "#c4793a", "tonalRamp": ["#3a2210", "#5e381a", "#824e24", "#a5632e", "#c4793a", "#d9944f", "#e6b483", "#f2d9bf"] },
+      "blue": { "role": "secondary", "displayName": "Deep Stadium Blue", "canonical": "#002d72", "tonalRamp": ["#001026", "#001a45", "#002d72", "#1a4a8a", "#3a6aaa", "#6a93c6", "#9bb8dd", "#cddcf0"] },
+      "grass": { "role": "tertiary", "displayName": "Outfield Grass", "canonical": "#2d5a27", "tonalRamp": ["#0f2009", "#1b3a16", "#2d5a27", "#3f7a37", "#549a48", "#7bb872", "#a8d4a1", "#d4eccf"] },
+      "text": { "role": "neutral", "displayName": "Body Text", "canonical": "#c9d5e3", "tonalRamp": ["#0a1628", "#1f3050", "#3a4d6e", "#5a6f97", "#7e93b5", "#94a3bb", "#c9d5e3", "#f0f4f8"] },
+      "fastball": { "role": "tertiary", "displayName": "Fastball Red", "canonical": "#ef4444", "tonalRamp": ["#450a0a", "#7f1d1d", "#b91c1c", "#dc2626", "#ef4444", "#f87171", "#fca5a5", "#fecaca"] },
+      "breaking": { "role": "tertiary", "displayName": "Breaking Blue", "canonical": "#60a5fa", "tonalRamp": ["#172554", "#1e3a8a", "#1d4ed8", "#2563eb", "#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe"] },
+      "offspeed": { "role": "tertiary", "displayName": "Offspeed Green", "canonical": "#4ade80", "tonalRamp": ["#052e16", "#14532d", "#166534", "#16a34a", "#22c55e", "#4ade80", "#86efac", "#bbf7d0"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero h1 only — Playfair at its largest, high-contrast serif voice." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2 headers." },
+      "title": { "displayName": "Title", "purpose": "h4–h6 and card titles; Geist sans for small-size legibility." },
+      "body": { "displayName": "Body", "purpose": "Reading prose, 65–75ch measure." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked clay kickers, badges, nav links — the only tracked-caps usage." },
+      "data": { "displayName": "Data", "purpose": "DM Mono for every stat: velocity, break, count, usage %." }
+    },
+    "shadows": [
+      { "name": "lift", "value": "0 12px 40px rgba(0,0,0,0.3)", "purpose": "Card hover lift, paired with translateY(-2px) and a clay border shift." },
+      { "name": "red-glow", "value": "0 4px 24px rgba(200,16,46,0.25)", "purpose": "Primary CTA resting glow; intensifies to 0 8px 32px rgba(200,16,46,0.35) on hover." },
+      { "name": "scroll-bar", "value": "0 1px 24px rgba(0,0,0,0.3)", "purpose": "Nav shadow once scrolled." },
+      { "name": "focus-ring", "value": "0 0 0 3px rgba(196,121,58,0.1)", "purpose": "Input/select focus glow with a clay border." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing." },
+      { "name": "duration-standard", "value": "0.28s", "purpose": "Default state-transition duration (--transition)." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "768px" },
+      { "name": "mobile", "value": "480px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single Mound Red call-to-action; reserved per the One Red Rule.",
+      "html": "<a class=\"ds-cta\" href=\"#\">Start Learning <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-cta { display: inline-flex; align-items: center; gap: 10px; padding: 15px 36px; background: var(--red, #c8102e); color: #fff; font-family: 'Geist', system-ui, sans-serif; font-weight: 700; font-size: 0.92rem; letter-spacing: 0.02em; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 24px rgba(200,16,46,0.25); transition: background 0.28s cubic-bezier(0.4,0,0.2,1), transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s cubic-bezier(0.4,0,0.2,1); } .ds-cta:hover { background: #a50d24; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,16,46,0.35); } .ds-cta:focus-visible { outline: 2px solid var(--clay, #c4793a); outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "The single deliberate clay kicker above a section heading — one system, not a per-block reflex.",
+      "html": "<span class=\"ds-label\">Pitch Arsenal</span>",
+      "css": ".ds-label { display: inline-block; font-family: 'Geist', system-ui, sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--clay, #c4793a); }"
+    },
+    {
+      "name": "Hero Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Clay-tinted pill used in the hero and as section eyebrows.",
+      "html": "<span class=\"ds-badge\">⚾ Beginner Friendly</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 18px; background: rgba(196,121,58,0.12); border: 1px solid rgba(196,121,58,0.3); border-radius: 100px; font-family: 'Geist', system-ui, sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--clay, #c4793a); text-transform: uppercase; letter-spacing: 0.14em; }"
+    },
+    {
+      "name": "Pitch Card",
+      "kind": "card",
+      "refersTo": "card-pitch",
+      "description": "Signature component: family top-stripe, mono abbreviation chip, stat line, flat-at-rest with hover lift.",
+      "html": "<article class=\"ds-pitch-card\"><span class=\"ds-pitch-abbr\">FF</span><h4 class=\"ds-pitch-title\">Four-Seam Fastball</h4><p class=\"ds-pitch-meta\">The pitcher's hardest, straightest pitch — thrown to overpower.</p><dl class=\"ds-pitch-stats\"><div><dt>Velocity</dt><dd>93–99 mph</dd></div><div><dt>Break</dt><dd>2–4 in</dd></div></dl></article>",
+      "css": ".ds-pitch-card { background: var(--card-bg, #131d30); border: 1px solid var(--card-border, #1f3050); border-top: 3px solid var(--fastball-color, #ef4444); border-radius: 18px; padding: 28px; transition: border-color 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s cubic-bezier(0.4,0,0.2,1), transform 0.28s cubic-bezier(0.4,0,0.2,1); } .ds-pitch-card:hover { transform: translateY(-2px); border-color: var(--clay, #c4793a); box-shadow: 0 12px 40px rgba(0,0,0,0.3); } .ds-pitch-abbr { display: inline-block; padding: 4px 10px; border-radius: 6px; background: rgba(239,68,68,0.12); color: var(--fastball-color, #ef4444); font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.85rem; } .ds-pitch-title { margin: 14px 0 8px; font-family: 'Geist', system-ui, sans-serif; font-weight: 600; color: var(--heading, #f0f4f8); } .ds-pitch-meta { color: var(--text, #c9d5e3); line-height: 1.72; font-family: 'Geist', system-ui, sans-serif; } .ds-pitch-stats { display: flex; gap: 28px; margin-top: 18px; } .ds-pitch-stats dt { font-family: 'Geist', system-ui, sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted, #94a3bb); } .ds-pitch-stats dd { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 1.1rem; color: var(--heading, #f0f4f8); }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Glossary search field — navy-mid fill, clay focus glow.",
+      "html": "<input class=\"ds-input\" type=\"search\" placeholder=\"Search the glossary…\" />",
+      "css": ".ds-input { width: 100%; padding: 12px 16px; background: var(--navy-mid, #111f3a); border: 1px solid var(--card-border, #1f3050); border-radius: 12px; color: var(--text, #c9d5e3); font-family: 'Geist', system-ui, sans-serif; font-size: 1rem; transition: border-color 0.28s, box-shadow 0.28s; } .ds-input::placeholder { color: var(--muted, #94a3bb); } .ds-input:focus-visible { outline: none; border-color: var(--clay, #c4793a); box-shadow: 0 0 0 3px rgba(196,121,58,0.1); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Uppercase muted nav link with a clay underline that wipes in from the left on hover.",
+      "html": "<a class=\"ds-navlink\" href=\"#\">Strategy</a>",
+      "css": ".ds-navlink { position: relative; font-family: 'Geist', system-ui, sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--muted, #94a3bb); text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; transition: color 0.28s cubic-bezier(0.4,0,0.2,1); } .ds-navlink::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1.5px; background: var(--clay, #c4793a); transform: scaleX(0); transform-origin: right; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); } .ds-navlink:hover { color: #fff; } .ds-navlink:hover::after { transform: scaleX(1); transform-origin: left; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Stadium at Dusk",
+    "overview": "A deep navy field sits under floodlights in the quiet seconds before a pitch. The ground is cool and near-black, lit by warm, sparing glows — clay amber, a single hot red, the cool wash of stadium blue. Nothing is bright by default; light is something the page earns. The personality is authoritative, inviting, and crafted — a printed sports annual translated to screen, with Playfair for the editorial voice, Geist for legible prose, and DM Mono presenting numbers as artifacts to admire. Density is editorial: generous rhythm, comfortable line height, varied section shapes over a stamped template.",
+    "keyCharacteristics": [
+      "Dark navy ground; warmth and color arrive as sparse, deliberate accents.",
+      "Serif display + sans body + mono data — three voices, each with a job.",
+      "Depth from atmosphere (colored glows, glass, lift-on-hover), not heavy shadows.",
+      "Pitch families are color-coded (red / blue / green) as a consistent legend.",
+      "Editorial pacing — varied section rhythm over uniform card grids."
+    ],
+    "rules": [
+      { "name": "The One Red Rule", "body": "Mound Red (#c8102e) is the only true call-to-action color — primary CTA and brand mark, almost nowhere else. A second red button on a screen means one is wrong.", "section": "colors" },
+      { "name": "The Earned-Light Rule", "body": "The ground is dark; color is light the page earns. Warmth lives in accents, type, and glows — never in the body background.", "section": "colors" },
+      { "name": "The Serif-Up-Top Rule", "body": "Playfair appears only at h1–h3 display sizes. Below ~1.3rem, switch to Geist — small Playfair turns spindly and hurts legibility.", "section": "typography" },
+      { "name": "The Numbers-Are-Mono Rule", "body": "Every stat is set in DM Mono so numbers line up and read as data, not prose.", "section": "typography" },
+      { "name": "The Flat-At-Rest Rule", "body": "Surfaces are flat by default. Depth is a reaction to hover/focus/scroll, never a resting state.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the body ground dark navy (#0a1628); let warmth arrive through clay, red, type, and glows — never a tinted-light background.",
+      "Do reserve Mound Red (#c8102e) for the single primary action and the brand mark.",
+      "Do set every stat and number in DM Mono so data reads as data.",
+      "Do use Playfair only at h1–h3 display sizes; drop to Geist below ~1.3rem.",
+      "Do keep surfaces flat at rest and let depth be a reaction to hover/focus/scroll.",
+      "Do color-code pitch families consistently (red fastball / blue breaking / green offspeed).",
+      "Do hold WCAG 2.1 AA — body text ≥4.5:1 on its navy surface.",
+      "Do give every animation a prefers-reduced-motion: reduce fallback."
+    ],
+    "donts": [
+      "Don't build the generic SaaS landing page — no gradient-hero-plus-feature-card-grid, no tiny tracked eyebrow on every section.",
+      "Don't let it read like a dry textbook / Wikipedia — no flat walls of reference text.",
+      "Don't adopt loud ESPN / sportsbook hype — no garish screaming graphics or ad-clutter density.",
+      "Don't go childish or clip-art — no cartoon illustration, emoji soup, or primary-color kiddie treatment.",
+      "Don't use a colored border-left/border-right stripe as a card accent; the pitch-family marker is a top stripe only.",
+      "Don't introduce gradient text anywhere except the one existing metallic hero-headline shimmer.",
+      "Don't add a second red CTA to a screen, or set light-gray body text 'for elegance' — it breaks contrast on navy."
+    ]
+  }
+}
