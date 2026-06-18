@@ -1275,10 +1275,25 @@ h4, h5, h6 {
   opacity: 0.15;
 }
 
-.cheat-item { display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; padding: 8px 0; border-bottom: 1px solid rgba(31,48,80,0.4); }
-.cheat-item:last-child { border-bottom: none; }
+.cheat-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Geist', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--heading);
+  margin-bottom: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--card-border);
+}
+.cheat-group-title .cheat-dot { margin-top: 0; }
 
-.cheat-item .cheat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; }
+.cheat-item { display: flex; align-items: baseline; gap: 8px; font-size: 0.88rem; padding: 8px 0; border-bottom: 1px solid rgba(31,48,80,0.4); }
+.cheat-group .cheat-item:last-child { border-bottom: none; }
+
+.cheat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; }
 .cheat-dot.fastball { background: var(--fastball-color); }
 .cheat-dot.breaking { background: var(--breaking-color); }
 .cheat-dot.offspeed { background: var(--offspeed-color); }
@@ -1293,9 +1308,8 @@ h4, h5, h6 {
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   :root { --section-padding: 72px; }
-  .cheat-sheet { grid-template-columns: 1fr; }
-  .cheat-item:last-child { border-bottom: none; }
-  .cheat-item:nth-last-child(-n+3) { border-bottom: 1px solid rgba(31,48,80,0.4); }
+  .cheat-sheet { grid-template-columns: 1fr; gap: 0; }
+  .cheat-group + .cheat-group { margin-top: 28px; }
 
   .nav-links {
     position: fixed;

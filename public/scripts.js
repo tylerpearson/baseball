@@ -449,6 +449,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Announce the filtered/sorted result set to assistive tech.
+  var pitchStatus = document.getElementById('pitch-status');
+  var FAMILY_LABELS = { all: 'pitches', fastball: 'fastballs', breaking: 'breaking balls', offspeed: 'offspeed pitches' };
+  function announcePitches() {
+    if (!pitchStatus || !pitchGrid) return;
+    var visible = pitchGrid.querySelectorAll('.pitch-card:not(.filter-hidden)').length;
+    var label = FAMILY_LABELS[currentFamily] || 'pitches';
+    var sortText = currentSort === 'velocity' ? ', sorted by velocity'
+      : currentSort === 'break' ? ', sorted by horizontal break' : '';
+    pitchStatus.textContent = 'Showing ' + visible + ' ' + label + sortText + '.';
+  }
+
   // Family tab clicks
   if (pitchFamilyTabs) {
     pitchFamilyTabs.addEventListener('click', function (e) {
@@ -462,6 +474,7 @@ document.addEventListener('DOMContentLoaded', function () {
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
       filterAndSortCards();
+      announcePitches();
     });
   }
 
@@ -477,6 +490,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       btn.classList.add('active');
       filterAndSortCards();
+      announcePitches();
     });
   }
 
@@ -556,14 +570,29 @@ document.addEventListener('DOMContentLoaded', function () {
       '<div class="when-used"><strong>When It\'s Used</strong> ' + p.whenUsed + '</div>';
   }
 
+  // Prevent comparing a pitch against itself: disable the option already
+  // chosen in the other select so A and B can never match.
+  function syncCompareOptions() {
+    if (!selectA || !selectB) return;
+    [[selectA, selectB], [selectB, selectA]].forEach(function (pair) {
+      var source = pair[0], other = pair[1];
+      Array.prototype.forEach.call(other.options, function (opt) {
+        if (opt.value === '') return;
+        opt.disabled = opt.value === source.value;
+      });
+    });
+  }
+
   if (selectA && panelA) {
     selectA.addEventListener('change', function () {
       populatePanel(panelA, this.value);
+      syncCompareOptions();
     });
   }
   if (selectB && panelB) {
     selectB.addEventListener('change', function () {
       populatePanel(panelB, this.value);
+      syncCompareOptions();
     });
   }
 
