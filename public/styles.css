@@ -654,8 +654,19 @@ h4, h5, h6 {
   letter-spacing: 0.02em;
 }
 
-.card-diagram { padding: 20px 28px 8px; display: flex; justify-content: center; }
+.card-diagram { padding: 20px 28px 18px; display: flex; flex-direction: column; align-items: center; }
 .card-diagram svg { width: 100%; max-width: 280px; height: auto; }
+
+.diagram-caption {
+  margin-top: 12px;
+  max-width: 280px;
+  text-align: center;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.45;
+}
 
 .card-toggle {
   width: 100%;
