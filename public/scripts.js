@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sortDiv.innerHTML =
       '<button class="sort-btn active" data-sort="default">Default Order</button>' +
       '<button class="sort-btn" data-sort="velocity">Sort by Velocity</button>' +
-      '<button class="sort-btn" data-sort="break">Sort by H-Break</button>';
+      '<button class="sort-btn" data-sort="break">Sort by Horizontal Break</button>';
     pitchFamilyTabs.parentNode.insertBefore(sortDiv, pitchGrid);
   }
 
